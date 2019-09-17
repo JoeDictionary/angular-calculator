@@ -1,0 +1,8 @@
+<div>
+    <div><span id="MQDisplaySpan">
+        {{ display }}
+    </span></div>
+
+    <app-calc-button *ngFor="let button of buttons" [renderValue]=button.render (click)="updateDisplay(button.mathValue)">
+    </app-calc-button>
+</div>
