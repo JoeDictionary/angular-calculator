@@ -1,0 +1,31 @@
+// app-calculator {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-flow: column nowrap;
+//     border-radius: 10px;
+//     margin-top: 2em;
+//     max-width: 15em
+// }
+
+app-calculator {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 2em;
+    max-width: 15em;
+}
+
+
+.calculatorButtons {
+    background-color: #999;
+    display: grid;
+    grid-gap: 1px;
+    flex-flow: column nowrap;
+    grid-template-columns: repeat(4, 1fr)
+}
+
+// .calculatorButtons > * {
+//     background-color: #fff;
+//     text-align: center;
+//     padding: 0.5em 1.25em;
+//   }

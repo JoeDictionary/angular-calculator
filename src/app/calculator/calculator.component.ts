@@ -9,8 +9,8 @@ import { Component, OnInit } from "@angular/core";
 export class CalculatorComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
-  buttons: mathInput[] = buttonList
 
+  buttons: mathInput[] = buttonList
   display: string = ""
 
   updateDisplay(val: string) {

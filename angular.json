@@ -28,9 +28,13 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/mathquill/build/mathquill.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/mathquill/build/mathquill.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,9 +97,13 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/mathquill/build/mathquill.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js",
+              "./node_modules/mathquill/build/mathquill.js"
+            ]
           }
         },
         "lint": {
