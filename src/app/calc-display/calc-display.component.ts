@@ -3,7 +3,7 @@ import {
   AfterViewInit
 } from "@angular/core";
 import { mathInput } from './../button-list'
-import * as nearley from 'nearley'
+import {Parser, Grammar} from 'nearley'
 import * as grammar from './../grammar'
 declare var MathQuill: any;
 
@@ -41,7 +41,7 @@ export class CalcDisplayComponent implements AfterViewInit {
   }
 
   parse(value: string) {
-    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
+    const parser = new Parser(Grammar.fromCompiled(grammar));
     try {
       parser.feed(value);
       return parser.results;
