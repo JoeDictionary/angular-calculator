@@ -11,11 +11,5 @@ export class CalculatorComponent implements OnInit {
   ngOnInit() {}
 
   buttons: mathInput[] = buttonList
-  display: string = ""
-
-  updateDisplay(val: string) {
-    this.display += val
-  }
-
 
 }

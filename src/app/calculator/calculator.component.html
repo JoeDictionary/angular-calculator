@@ -1,8 +1,9 @@
-<div>
-    <app-calc-display [displayRenderVal]="display"></app-calc-display>
+
+<div class="wrap">
+    <app-calc-display #childDisp ></app-calc-display>
 
     <div class="calculatorButtons">
-        <app-calc-button *ngFor="let button of buttons" [buttonRenderVal]=button.render (click)="updateDisplay(button.mathValue)">
+        <app-calc-button *ngFor="let button of buttons" [buttonRenderVal]=button.render (click)=" childDisp.updateDisplay(button)">
         </app-calc-button>
     </div>
 </div>

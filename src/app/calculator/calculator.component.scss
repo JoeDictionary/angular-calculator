@@ -8,21 +8,32 @@
 //     max-width: 15em
 // }
 
-app-calculator {
+:host {
     border-radius: 10px;
     overflow: hidden;
     margin-top: 2em;
     max-width: 15em;
 }
 
+// app-calc-button {
+//     border: solid;
+// }
+
+.wrap {
+    background-color: black;
+    border-radius: 10px
+}
 
 .calculatorButtons {
     background-color: #999;
     display: grid;
     grid-gap: 1px;
     flex-flow: column nowrap;
-    grid-template-columns: repeat(4, 1fr)
+    grid-template-columns: repeat(4, 1fr);
+    border-radius: 10px
 }
+
+
 
 // .calculatorButtons > * {
 //     background-color: #fff;
