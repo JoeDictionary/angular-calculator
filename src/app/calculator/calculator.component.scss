@@ -8,35 +8,84 @@
 //     max-width: 15em
 // }
 
-:host {
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 2em;
-    max-width: 15em;
-}
-
-// app-calc-button {
-//     border: solid;
+// :host {
+//     border-radius: 10px;
+//     overflow: hidden;
+//     margin-top: 2em;
+//     max-width: 15em;
 // }
 
-.wrap {
-    background-color: black;
-    border-radius: 10px
-}
-
 .calculatorButtons {
-    background-color: #999;
-    display: grid;
-    grid-gap: 1px;
-    flex-flow: column nowrap;
-    grid-template-columns: repeat(4, 1fr);
-    border-radius: 10px
+  background-color: #999;
+  display: grid;
+  grid-gap: 1px;
+  flex-flow: column nowrap;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(5, auto);
+  border-radius: 10px;
+  max-width: 15em;
+  grid-template-areas:
+      "sqrt  fraction log ."
+      "seven eight nine   plus"
+      "four  five  six    minus"
+      "one   two   three  times"
+      "c     zero  equals divide"
 }
 
-
-
-// .calculatorButtons > * {
-//     background-color: #fff;
-//     text-align: center;
-//     padding: 0.5em 1.25em;
-//   }
+#plus {
+  grid-area: plus;
+}
+#minus {
+  grid-area: minus;
+}
+#times {
+  grid-area: times;
+}
+#divide {
+  grid-area: divide;
+}
+#one {
+  grid-area: one;
+}
+#two {
+  grid-area: two;
+}
+#three {
+  grid-area: three;
+}
+#four {
+  grid-area: four;
+}
+#five {
+  grid-area: five;
+}
+#six {
+  grid-area: six;
+}
+#seven {
+  grid-area: seven;
+}
+#eight {
+  grid-area: eight;
+}
+#nine {
+  grid-area: nine;
+}
+#zero {
+  grid-area: zero;
+}
+#fraction {
+  grid-area: fraction;
+}
+#sqrt {
+  grid-area: sqrt;
+}
+#log {
+  grid-area: log;
+}
+#equals {
+  grid-area: equals;
+}
+#c {
+  grid-area: c;
+}

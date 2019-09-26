@@ -1,4 +1,4 @@
-import { mathInput, buttonList } from "./../button-list";
+import { buttonList } from "./../button-list";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -10,6 +10,6 @@ export class CalculatorComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
 
-  buttons: mathInput[] = buttonList
+  buttons: any = buttonList
 
 }

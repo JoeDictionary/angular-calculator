@@ -2,14 +2,14 @@ import {
   Component,
   AfterViewInit
 } from "@angular/core";
-import { mathInput } from './../button-list'
-import {Parser, Grammar} from 'nearley'
-import * as grammar from './../grammar'
+import { MathInput } from './../button-list'
+// import {Parser, Grammar} from 'nearley'
+// import * as grammar from './../grammar'
+
 declare var MathQuill: any;
-
-
-
 const MQ = MathQuill.getInterface(2);
+
+
 
 @Component({
   selector: "app-calc-display",
@@ -26,29 +26,29 @@ export class CalcDisplayComponent implements AfterViewInit {
 
   mathField: any;
 
-  updateDisplay(value: mathInput) {
+  updateDisplay(value: MathInput) {
     if (value.mathValue) {
       this.mathField.write(value.mathValue);
       this.mathField.focus();
       console.log(value.mathValue);
     }
 
-    if (value.actionValue) {
-      console.log(value.mathValue);
-      eval(value.actionValue)
+    if (value.executeCode) {
+      // console.log(value.mathValue);
+      value.executeCode(this.mathField)
     }
     
   }
 
-  parse(value: string) {
-    const parser = new Parser(Grammar.fromCompiled(grammar));
-    try {
-      parser.feed(value);
-      return parser.results;
-    } catch (e) {
-      return "Syntax Error";
-    }
-  }
+  // parse(value: string) {
+  //   const parser = new Parser(Grammar.fromCompiled(grammar));
+  //   try {
+  //     parser.feed(value);
+  //     return parser.results;
+  //   } catch (e) {
+  //     return "Syntax Error";
+  //   }
+  // }
 
 
 
