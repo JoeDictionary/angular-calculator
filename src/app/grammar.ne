@@ -1,32 +1,53 @@
-# Styleguide: https://github.com/kach/nearley/blob/master/docs/md/how-to-grammar-good.md
-#  https://nearley.js.org/docs/grammar
+# `main` is the nonterminal that nearley tries to parse, so
+# we define it first.
 
+main -> AS {% function(d) {return d[0]; } %}
 
-input ->
-    expression {% data => eval(data[0]) %}
+# We define each level of precedence as a nonterminal.
 
-expression ->
-    expression infixOp number         {% data => data.join("") %}
-    | "\\left(" expression "\\right)" {% ([a, b, c]) => "(" + b + ")" %}
-    | function                        {% id %}
-    | number                          {% id %}
+# Parentheses
+P ->
+    "\\left(" AS "\\right)" {% function(d) {return d[1]; } %}
+    | "{" AS "}"            {% ([a, b, c]) => b %}
+    | N                     {% id %}
+    | "-" N                 {% ([a, b]) => -b %}
 
-function ->
-    "\\sqrt{" expression "}" {% ([a, b, c]) => "Math.sqrt(" + b + ")" %}
-    | "\\log\\left(" expression "\\right)" {% ([a, b, c]) => "Math.log(" + b + ")" %}
-    | "\\log_" expression "\\left(" expression "\\right)" {% ([a, b, c, d, e]) => "Math.log(" + d + ") / Math.log(" + b + ")" %}
-    | "\\frac{" expression "}{" expression "}" {% ([a, b, c, d, e]) => "(" + b + ") / (" + d + ")" %}
+# Exponents
+E -> 
+    P "^" E  {% function(d) {return Math.pow(d[0], d[2]); } %}
+    | P      {% id %}
 
-infixOp -> 
-    "\\times"  {% _ => "*" %} 
-    | "\\cdot" {% _ => "*" %}
-    | "\\div"  {% _ => "/" %}
-    | "+"      {% id %}
-    | "-"      {% id %}
+# Multiplication and division
+MD -> MD ("\\cdot" | "\\times") E  {% function(d) {return d[0]*d[2]; } %}
+    | MD "\\div" E                 {% function(d) {return d[0]/d[2]; } %}
+    | E                            {% id %}
 
-number -> 
-    digits              {% id %}
-    | digits "." digits {% data => data.join("") %}
+# Addition and subtraction
+AS -> AS "+" MD {% function(d) {return d[0]+d[2]; } %}
+    | AS "-" MD {% function(d) {return d[0]-d[2]; } %}
+    | MD        {% id %}
 
-digits ->
-    [0-9]:+ {% data => data[0].join("") %}
+# A number or a function of a number
+N ->
+    float           {% id %}
+    | "\\frac" P P  {% ([a, b, c]) => (b) / (c) %}
+    | "\\sin" P     {% function(d) {return Math.sin(d[1]); } %}
+    | "\\cos" P     {% function(d) {return Math.cos(d[1]); } %}
+    | "\\tan" P     {% function(d) {return Math.tan(d[1]); } %}
+    
+    | "\\arcsin" P  {% function(d) {return Math.asin(d[1]); } %}
+    | "\\arccos" P  {% function(d) {return Math.acos(d[1]); } %}
+    | "\\arctan" P  {% function(d) {return Math.atan(d[1]); } %}
+
+    | "\\sqrt[]" P  {% function(d) {return Math.sqrt(d[1]); } %}
+    | "\\log_" P P  {% ([a, b, c]) => Math.log(c) / Math.log(b)  %}
+
+    | "\\pi"        {% function(d) {return Math.PI; } %}
+    | "e"           {% function(d) {return Math.E; } %}
+
+# I use `float` to basically mean a number with a decimal point in it
+float ->
+    int "." int         {% function(d) {return parseFloat(d[0] + d[1] + d[2])} %}
+	| int               {% function(d) {return parseInt(d[0])} %}
+
+int -> [0-9]:+    {% function(d) {return d[0].join(""); } %}

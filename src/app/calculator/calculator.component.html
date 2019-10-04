@@ -2,12 +2,24 @@
   <app-calc-display #childDisp></app-calc-display>
 
   <div class="calculatorButtons">
-    <app-calc-button
-      *ngFor="let button of buttons"
-      [id]=button.selector
-      [buttonRenderVal]="button.render"
-      (click)="childDisp.updateDisplay(button)"
-    >
-    </app-calc-button>
+    <div class="topButtons">
+      <app-calc-button
+        *ngFor="let button of buttons.top"
+        [id]="button.selector"
+        [buttonRenderVal]="button.render"
+        (click)="childDisp.updateDisplay(button)"
+      >
+      </app-calc-button>
+    </div>
+
+    <div class="bottomButtons">
+      <app-calc-button
+        *ngFor="let button of buttons.bottom"
+        [id]="button.selector"
+        [buttonRenderVal]="button.render"
+        (click)="childDisp.updateDisplay(button)"
+      >
+      </app-calc-button>
+    </div>
   </div>
 </div>

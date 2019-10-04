@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "gen_parser": "nearleyc ./src/app/grammar.ne -o ./src/app/grammar.js"
   },
   "private": true,
   "dependencies": {

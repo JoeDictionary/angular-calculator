@@ -20,17 +20,33 @@
   display: grid;
   grid-gap: 1px;
   flex-flow: column nowrap;
-  grid-template-columns: repeat(4, auto);
-  grid-template-rows: repeat(5, auto);
+  grid-template-columns: 1;
+  grid-template-rows: repeat(2, auto);
   border-radius: 10px;
   max-width: 15em;
   grid-template-areas:
-      "sqrt  fraction log ."
-      "seven eight nine   plus"
-      "four  five  six    minus"
-      "one   two   three  times"
-      "c     zero  equals divide"
+  "topButtons"
+  "bottomButtons"
 }
+
+.topButtons {
+  grid-area: topButtons;
+  display: grid;
+  grid-template-areas:
+    "fraction sqrt log"
+    "sin     cos  tan"
+}
+
+.bottomButtons {
+  grid-area: bottomButtons;
+  display: grid;
+  grid-template-areas:
+    "seven eight nine   plus"
+    "four  five  six    minus"
+    "one   two   three  times"
+    "c     zero  equals divide"
+}
+
 
 #plus {
   grid-area: plus;
@@ -74,6 +90,12 @@
 #zero {
   grid-area: zero;
 }
+#equals {
+  grid-area: equals;
+}
+#c {
+  grid-area: c;
+}
 #fraction {
   grid-area: fraction;
 }
@@ -83,9 +105,12 @@
 #log {
   grid-area: log;
 }
-#equals {
-  grid-area: equals;
+#sin {
+  grid-area: sin
 }
-#c {
-  grid-area: c;
+#cos {
+  grid-area: cos
+}
+#tan {
+  grid-area: tan
 }

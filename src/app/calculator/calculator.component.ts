@@ -7,9 +7,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./calculator.component.scss"]
 })
 export class CalculatorComponent implements OnInit {
-  constructor() {}
-  ngOnInit() {}
+  buttons: any = buttonList;
 
-  buttons: any = buttonList
+  constructor() { }
+  ngOnInit() { }
 
 }

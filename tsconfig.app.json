@@ -3,8 +3,8 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [
-      "jquery",
-      "MathQuill"
+      "jquery"
+      // "MathQuill" //<-- makes angular compiler "not find the typings file"
     ]
   },
   "files": [
