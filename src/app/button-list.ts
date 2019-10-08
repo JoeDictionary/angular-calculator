@@ -77,7 +77,7 @@ export const buttonList: any = {
       render: "log",
       mathValue: "\\log_{}\\left(\\right)",
       executeCode(arg: any) {
-        arg.keystroke("Left Left");
+        arg.keystroke("Left Left Left");
       }
     },
     {

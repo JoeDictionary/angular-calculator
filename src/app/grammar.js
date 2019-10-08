@@ -43,7 +43,7 @@ var grammar = {
     {"name": "N$string$8", "symbols": [{"literal":"\\"}, {"literal":"s"}, {"literal":"q"}, {"literal":"r"}, {"literal":"t"}, {"literal":"["}, {"literal":"]"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "N", "symbols": ["N$string$8", "P"], "postprocess": function(d) {return Math.sqrt(d[1]); }},
     {"name": "N$string$9", "symbols": [{"literal":"\\"}, {"literal":"l"}, {"literal":"o"}, {"literal":"g"}, {"literal":"_"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "N", "symbols": ["N$string$9", "P", "P"], "postprocess": function(d) {return Math.log(d[2]); }},
+    {"name": "N", "symbols": ["N$string$9", "P", "P"], "postprocess": ([a, b, c]) => Math.log(c) / Math.log(b)},
     {"name": "N$string$10", "symbols": [{"literal":"\\"}, {"literal":"p"}, {"literal":"i"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "N", "symbols": ["N$string$10"], "postprocess": function(d) {return Math.PI; }},
     {"name": "N", "symbols": [{"literal":"e"}], "postprocess": function(d) {return Math.E; }},
