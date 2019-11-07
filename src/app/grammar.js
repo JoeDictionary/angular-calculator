@@ -2,8 +2,14 @@
 // http://github.com/Hardmath123/nearley
 (function () {
 function id(x) { return x[0]; }
- const funcs = require('./customFunctions.js')
- var grammar = {
+ function sigma(n, end, func) {
+    let result = 0
+    for(n; n <= end; n++){
+        result += func
+    }
+
+    return [n, end, func, result]
+} var grammar = {
     Lexer: undefined,
     ParserRules: [
     {"name": "main", "symbols": ["AS"], "postprocess": function(d) {return d[0]; }},
@@ -50,7 +56,7 @@ function id(x) { return x[0]; }
     {"name": "N", "symbols": [{"literal":"e"}], "postprocess": function(d) {return Math.E; }},
     {"name": "N$string$11", "symbols": [{"literal":"\\"}, {"literal":"s"}, {"literal":"u"}, {"literal":"m"}, {"literal":"_"}, {"literal":"{"}, {"literal":"n"}, {"literal":"="}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "N$string$12", "symbols": [{"literal":"}"}, {"literal":"^"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "N", "symbols": ["N$string$11", "P", "N$string$12", "P"], "postprocess": ([a, b, c, d]) =>  funcs.sigma(d, b)},
+    {"name": "N", "symbols": ["N$string$11", "P", "N$string$12", "P", "P"], "postprocess": ([a, b, c, d, e]) => sigma(b, d, e)},
     {"name": "float", "symbols": ["int", {"literal":"."}, "int"], "postprocess": function(d) {return parseFloat(d[0] + d[1] + d[2])}},
     {"name": "float", "symbols": ["int"], "postprocess": function(d) {return parseInt(d[0])}},
     {"name": "float", "symbols": ["sumVar"], "postprocess": id},

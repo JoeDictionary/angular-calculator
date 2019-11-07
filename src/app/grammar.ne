@@ -1,6 +1,13 @@
 # `main` is the nonterminal that nearley tries to parse, so
 # we define it first.
-@{% const funcs = require('./customFunctions.js') %}
+@{% function sigma(n, end, func) {
+    let result = 0
+    for(n; n <= end; n++){
+        result += func
+    }
+
+    return [n, end, func, result]
+} %}
 
 main -> AS {% function(d) {return d[0]; } %}
 
@@ -44,7 +51,7 @@ N ->
     | "\\log_" P P                                     {% ([a, b, c]) => Math.log(c) / Math.log(b) %}
     | "\\pi"                                           {% function(d) {return Math.PI; } %}
     | "e"                                              {% function(d) {return Math.E; } %}
-    | "\\sum_{n=" P "}^" P "\\left(" AS "\\right)"     {% ([a, b, c, d, e, f, g]) =>  funcs.sigma(d, b) %}
+    | "\\sum_{n=" P "}^" P P    {% ([a, b, c, d, e]) => sigma(b, d, e) %}
 
 # I use `float` to basically mean a number with a decimal point in it
 float ->

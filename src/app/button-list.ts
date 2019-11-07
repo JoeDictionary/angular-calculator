@@ -133,7 +133,7 @@ export const buttonList: any = {
     {
       selector: 'sum',
       render: 'Sigma',
-      mathValue : '\\sum_{n=}^{ }'
+      mathValue : '\\sum_{n=}^{ }\\left(\\right)'
     }
   ]
 };
