@@ -1,5 +1,5 @@
-import { Component, AfterViewInit } from "@angular/core";
-import { MathInput } from "./../button-list";
+import { Component, AfterViewInit } from '@angular/core';
+import { MathInput } from './../button-list';
 // import {Parser, Grammar} from 'nearley'
 // import * as grammar from './../grammar'
 
@@ -7,13 +7,13 @@ declare var MathQuill: any;
 const MQ = MathQuill.getInterface(2);
 
 @Component({
-  selector: "app-calc-display",
+  selector: 'app-calc-display',
   template: `
     <div (click)="mathField.focus()">
       <span> </span>
     </div>
   `,
-  styleUrls: ["./calc-display.component.scss"]
+  styleUrls: ['./calc-display.component.scss']
 })
 export class CalcDisplayComponent implements AfterViewInit {
   constructor() {}
@@ -44,13 +44,13 @@ export class CalcDisplayComponent implements AfterViewInit {
   // }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    this.mathField = MQ.MathField(document.querySelector("span"), {
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
+    this.mathField = MQ.MathField(document.querySelector('span'), {
       spaceBehavesLikeTab: true,
       sumStartsWithNEquals: true,
       supSubsRequireOperand: true,
-      autoCommands: "pi sum",
+      autoCommands: 'pi sum',
       // maxDepth: 10,
       // autoOperatorNames: "sin cos"
       handlers: {
