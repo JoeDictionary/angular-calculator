@@ -52,7 +52,7 @@ N ->
     | "\\log_" P P              {% ([a, b, c]) => Math.log(c) / Math.log(b) %}
     | "\\pi"                    {% function(d) {return Math.PI; } %}
     | "e"                       {% function(d) {return Math.E; } %}
-    | "\\sum_{n=" P "}^" P P    {% ([a, b, c, d, e]) => sigma(b, d, e) %}
+    | "\\sum_{n=" P "}^" P P    {% ([a, b, c, d, e]) => sigma(b, d, (n) => e) %}
 
 # I use `float` to basically mean a number with a decimal point in it
 float ->
