@@ -8,7 +8,8 @@ function id(x) { return x[0]; }
         result += func
     }
 
-    return [n, end, func, result]
+    // return [n, end, func, result]
+    return result
 } var grammar = {
     Lexer: undefined,
     ParserRules: [

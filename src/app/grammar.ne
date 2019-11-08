@@ -6,7 +6,8 @@
         result += func
     }
 
-    return [n, end, func, result]
+    // return [n, end, func, result]
+    return result
 } %}
 
 main -> AS {% function(d) {return d[0]; } %}
@@ -39,18 +40,18 @@ AS ->
 
 # A number or a function of a number
 N ->
-    float                                              {% id %}
-    | "\\frac" P P                                     {% ([a, b, c]) => (b) / (c) %}
-    | "\\sin" P                                        {% function(d) {return Math.sin(d[1]); } %}
-    | "\\cos" P                                        {% function(d) {return Math.cos(d[1]); } %}
-    | "\\tan" P                                        {% function(d) {return Math.tan(d[1]); } %}
-    | "\\arcsin" P                                     {% function(d) {return Math.asin(d[1]); } %}
-    | "\\arccos" P                                     {% function(d) {return Math.acos(d[1]); } %}
-    | "\\arctan" P                                     {% function(d) {return Math.atan(d[1]); } %}
-    | "\\sqrt[]" P                                     {% function(d) {return Math.sqrt(d[1]); } %}
-    | "\\log_" P P                                     {% ([a, b, c]) => Math.log(c) / Math.log(b) %}
-    | "\\pi"                                           {% function(d) {return Math.PI; } %}
-    | "e"                                              {% function(d) {return Math.E; } %}
+    float                       {% id %}
+    | "\\frac" P P              {% ([a, b, c]) => (b) / (c) %}
+    | "\\sin" P                 {% function(d) {return Math.sin(d[1]); } %}
+    | "\\cos" P                 {% function(d) {return Math.cos(d[1]); } %}
+    | "\\tan" P                 {% function(d) {return Math.tan(d[1]); } %}
+    | "\\arcsin" P              {% function(d) {return Math.asin(d[1]); } %}
+    | "\\arccos" P              {% function(d) {return Math.acos(d[1]); } %}
+    | "\\arctan" P              {% function(d) {return Math.atan(d[1]); } %}
+    | "\\sqrt[]" P              {% function(d) {return Math.sqrt(d[1]); } %}
+    | "\\log_" P P              {% ([a, b, c]) => Math.log(c) / Math.log(b) %}
+    | "\\pi"                    {% function(d) {return Math.PI; } %}
+    | "e"                       {% function(d) {return Math.E; } %}
     | "\\sum_{n=" P "}^" P P    {% ([a, b, c, d, e]) => sigma(b, d, e) %}
 
 # I use `float` to basically mean a number with a decimal point in it
